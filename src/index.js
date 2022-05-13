@@ -10,9 +10,5 @@ promise.then(response=> {
   // console.log(response);
 
   const notes = response.data
-  
+  ReactDOM.createRoot(document.getElementById('root')).render(<App notes={notes} />)
 })
-ReactDOM.render(
-  <App note = {notes}  />,
-  document.getElementById('root')
-)
