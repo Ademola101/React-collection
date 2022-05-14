@@ -1,12 +1,10 @@
 import React from 'react';
 
 const List = ({data}) => {
+  
   return (<> <ul>
-  {data.map(d => { return(
-    <li>
-      {d.name}
-    </li>
-  )})} </ul>
+   {data.map(home => <div>{home.name}</div>)}
+  </ul>
   </>)
 }
 

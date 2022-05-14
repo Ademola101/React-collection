@@ -10,21 +10,21 @@ const App = () => {
   const [countries, setCountries] = useState([])
   const [userInput, setUserInput] = useState("")
 
-  const countryData = () => {
+  
+
+  useEffect(() => {
     axios.get("https://restcountries.com/v3.1/all").then(response => {
       setCountries(response.data)
       
     })
 
 
-  };
-
-  useEffect(countryData,[])
+  },[])
 
   const onChange = (event) => {
    setUserInput(event.target.value)
-  }
-  
+  };
+  console.log(countries);
     return ( <>
     
 <Input/>
