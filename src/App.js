@@ -28,7 +28,7 @@ const App = () => {
     return ( <>
     
 <Input/>
-   <List data = {countries}/> 
+   <List key={data.id} data = {countries}/> 
     </>
     )
   }
