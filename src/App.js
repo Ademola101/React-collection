@@ -1,13 +1,16 @@
 import Note from "./components/Note"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import Input from "./components/input"
+import List from "./components/List"
 
 
 const App = () => {
 
   const [countries, setCountries] = useState([])
+  const [userInput, setUserInput] = useState("")
 
-  const data = () => {
+  const countryData = () => {
     axios.get("https://restcountries.com/v3.1/all").then(response => {
       setCountries(response.data)
       
@@ -16,11 +19,16 @@ const App = () => {
 
   };
 
-  useEffect(data,[])
-  console.log(countries);
+  useEffect(countryData,[])
+
+  const onChange = (event) => {
+   setUserInput(event.target.value)
+  }
+  
     return ( <>
     
-    
+<Input/>
+   <List data = {countries}/> 
     </>
     )
   }
