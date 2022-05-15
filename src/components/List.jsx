@@ -1,12 +1,13 @@
 import React from 'react';
 import { appContext } from '../Helper/context';
 import { useContext } from 'react';
+import Note from './Note';
 
 const List = ({data}) => {  
   return (<> 
   
   <ul>
-   {data.map(home => <div>{home.name.common}</div>)}
+   {data.}
   </ul>
   </>)}
 
