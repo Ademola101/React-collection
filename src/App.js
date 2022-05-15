@@ -1,6 +1,6 @@
 import Note from "./components/Note"
 import { useState, useEffect } from "react"
-import Axios from "axios"
+import axios from "axios"
 import Input from "./components/input"
 import List from "./components/List"
 import { appContext } from "./Helper/context"
@@ -17,7 +17,7 @@ const App = () => {
    };  
 
   useEffect(() => {
-    Axios.get("https://restcountries.com/v3.1/all").then(response => {
+    axios.get("https://restcountries.com/v3.1/all").then(response => {
   if(userInput !== "") {
     const searchResult = response.data.filter(country => country.name.common.toLowerCase().includes(userInput.toLocaleLowerCase()));
     setCountries(searchResult);
