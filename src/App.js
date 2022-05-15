@@ -19,12 +19,12 @@ const App = () => {
   useEffect(() => {
     Axios.get("https://restcountries.com/v3.1/all").then(response => {
   if(userInput !== "") {
-    const searchResult = response.data.filter(country => country.name.common.toLowerCase().includes(userInput.toLocaleLowerCase));
-    setCountries(searchResult) 
+    const searchResult = response.data.filter(country => country.name.common.toLowerCase().includes(userInput.toLocaleLowerCase()));
+    setCountries(searchResult);
   }    
   
   
-  },[]);
+  },[userInput]);
 
 
   });
