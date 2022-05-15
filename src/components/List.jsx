@@ -2,19 +2,13 @@ import React from 'react';
 import { appContext } from '../Helper/context';
 import { useContext } from 'react';
 
-const List = ({data}) => {
-
-  const {userInput} = useContext(appContext)
-  const filterItems = (arr, query) => {
-    return arr.filter(el => el.toLowerCase().indexOf(query.toLowerCase()) !== -1)
-  }
-  
+const List = ({data}) => {  
   return (<> 
   
   <ul>
-   {data.map(home => <div>{filterItems(home.name.common,userInput)}</div>)}
+   {data.map(home => <div>{home.name.common}</div>)}
   </ul>
-  </>)
-}
+  </>)}
+
 
 export default List;
