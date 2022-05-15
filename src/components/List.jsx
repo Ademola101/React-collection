@@ -7,7 +7,7 @@ const List = ({data}) => {
   return (<> 
   
   <ul>
-   {data.name}
+   {data.name[0]}
   </ul>
   </>)}
 
