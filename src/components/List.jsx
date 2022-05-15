@@ -3,11 +3,11 @@ import { appContext } from '../Helper/context';
 import { useContext } from 'react';
 import Note from './Note';
 
-const List = ({data}) => {  
+const List = ({countries}) => {  
   return (<> 
   
   <ul>
-   {data.name[0]}
+   {countries.name.common}
   </ul>
   </>)}
 
