@@ -1,8 +1,10 @@
 import Note from "./components/Note"
 import { useState, useEffect } from "react"
-import axios from "axios"
+import Axios from "axios"
 import Input from "./components/input"
 import List from "./components/List"
+import { appContext } from "./Helper/context"
+
 
 
 const App = () => {
@@ -10,25 +12,26 @@ const App = () => {
   const [countries, setCountries] = useState([])
   const [userInput, setUserInput] = useState("")
 
-  
+  const textOnChange = (event) => {
+    setUserInput(event.target.value)
+   };  
 
   useEffect(() => {
-    axios.get("https://restcountries.com/v3.1/all").then(response => {
+    Axios.get("https://restcountries.com/v3.1/all").then(response => {
       setCountries(response.data)
-      
-    })
+      console.log(countries);
+    },[]);
 
 
-  },[])
+  });
 
-  const onChange = (event) => {
-   setUserInput(event.target.value)
-  };
-  console.log(countries);
-    return ( <>
+
+  
+    return ( <> <appContext.Provider value={{userInput,setUserInput}}>
     
-<Input/>
-   <List key={countries.id} data = {countries}/> 
+<Input onChange={textOnChange}/>
+  <List data={countries}/>
+  </appContext.Provider>
     </>
     )
   }
