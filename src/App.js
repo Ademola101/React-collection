@@ -1,4 +1,4 @@
-import Note from "./components/Note"
+
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Input from "./components/input"
@@ -16,14 +16,20 @@ const App = () => {
     setUserInput(event.target.value)
    };  
 
+   function filterItems(arr, query) {
+    return arr.filter(function(el) {
+      return el.name.common.toLowerCase().indexOf(query.toLowerCase()) !== -1
+    })
+  }
+
   useEffect(() => {
     axios.get("https://restcountries.com/v3.1/all").then(response => {
   if(userInput !== "") {
-    const searchResult = response.data.filter(country => country.name.common.toLowerCase().includes(userInput.toLocaleLowerCase()));
-    setCountries(searchResult);
-  }    
+    const searchResult = filterItems(response.data,userInput);
   
+  setCountries(searchResult)}    
   
+  console.log(countries);
   },[userInput]);
 
 
@@ -31,11 +37,10 @@ const App = () => {
 
 
   
-    return ( <> <appContext.Provider value={{userInput,setUserInput}}>
-    
+    return ( <> 
 <Input onChange={textOnChange}/>
   <List data={countries}/>
-  </appContext.Provider>
+  
     </>
     )
   }
