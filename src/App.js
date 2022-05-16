@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import Input from "./components/input"
 import List from "./components/List"
+import { appContext } from "./Helper/context"
 
 
 
@@ -19,15 +20,17 @@ const App = () => {
     axios.get("https://restcountries.com/v3.1/all").then(response => {
 
     setCountries(response.data)
-  
+    
+    setCountriesToShow(countries.filter(country => 
+      country.name.common.toLowerCase().startsWith(userInput.toLocaleLowerCase()) ))
   });
 
 
   },[userInput]);
+  
+  
   const textOnChange = (event) => {
     setUserInput(event.target.value)
-    if(userInput !== "") 
-    {setCountriesToShow(countries.filter(country => country.name.common.toLowerCase().startsWith(userInput)))}
     
    };  
 
@@ -36,12 +39,13 @@ const App = () => {
     return ( <> 
 <Input value={userInput} onChange={textOnChange}/>
 
-{countriesToShow.length >= 10 ? (<div>
-  
-  more than 10</div>) :
-   (<List countries={countriesToShow}/>)
+{countriesToShow.length > 10 ? (<div>
+  too much
+</div>) :
+
+(<List countries={countriesToShow}/>)
+
 }
-  
   
     </>
     )
