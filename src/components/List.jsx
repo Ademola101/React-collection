@@ -7,7 +7,11 @@ const List = ({countries}) => {
   return (<> 
   
   <ul>
-   {countries.name.common}
+   {countries.map(country => { return(<li>
+       {country.name.common}
+     </li>
+   )
+     })}
   </ul>
   </>)}
 

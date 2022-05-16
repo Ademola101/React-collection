@@ -14,24 +14,21 @@ const App = () => {
   const [countriesToShow,setCountriesToShow] = useState([])
 
   
-   function filterItems(arr, query) {
-    return arr.filter(function(el) {
-      return el.name.common.toLowerCase().includes(query.toLowerCase()) 
-    })
-  }
 
   useEffect(() => {
     axios.get("https://restcountries.com/v3.1/all").then(response => {
 
     setCountries(response.data)
   
-  },[]);
-
-
   });
+
+
+  },[userInput]);
   const textOnChange = (event) => {
     setUserInput(event.target.value)
-    countriesToShow(filterItems(countries,userInput))
+    if(userInput !== "") 
+    {setCountriesToShow(countries.filter(country => country.name.common.toLowerCase().startsWith(userInput)))}
+    
    };  
 
 
