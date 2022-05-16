@@ -35,7 +35,13 @@ const App = () => {
   
     return ( <> 
 <Input value={userInput} onChange={textOnChange}/>
-  <List countries={countriesToShow}/>
+
+{countriesToShow.length >= 10 ? (<div>
+  
+  more than 10</div>) :
+   (<List countries={countriesToShow}/>)
+}
+  
   
     </>
     )
