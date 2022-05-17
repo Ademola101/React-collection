@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Input from "./components/input"
-import List from "./components/List"
-import { appContext } from "./Helper/context"
+import List from "./components/CountryName"
+import OneCountry from "./components/OneCountry"
 
 
 
@@ -47,7 +47,10 @@ const App = () => {
 
 </div>) : countriesToShow.length >= 10 ? (<div>
   Too many macthes
-</div>) : ( <List countries={countriesToShow}/>)
+</div>) : countriesToShow.length === 1 ? (<OneCountry countries = {countriesToShow}/>)
+
+
+:( <List countries={countriesToShow}/>)
 
 
 
