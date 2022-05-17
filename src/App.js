@@ -21,10 +21,12 @@ const App = () => {
 
     setCountries(response.data)
     
-    });
-    setCountriesToShow(countries.filter(country => 
-      country.name.common.toLowerCase().startsWith(userInput.toLocaleLowerCase()) ))
-
+    }); if(userInput !== ""){
+      setCountriesToShow(countries.filter(country => 
+        country.name.common.toLowerCase().startsWith(userInput.toLocaleLowerCase()) ))
+  
+    }
+    
   },[userInput]);
   
   
@@ -40,9 +42,12 @@ const App = () => {
     return ( <> 
 <Input value={userInput} onChange={textOnChange}/>
 
-{countriesToShow.length < 10 ? (<List countries={countriesToShow}/>) : (<div>
-  too much
-</div>) 
+{countriesToShow.length  === 0 ? (<div>
+
+
+</div>) : countriesToShow.length >= 10 ? (<div>
+  Too many macthes
+</div>) : ( <List countries={countriesToShow}/>)
 
 
 
