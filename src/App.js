@@ -34,6 +34,10 @@ const App = () => {
   
   
   const textOnChange = (event) => {
+    if(userInput !== ""){
+      setCountriesToShow(countries.filter(country => 
+        country.name.common.toLowerCase().startsWith(userInput.toLocaleLowerCase()) ))
+  
     setUserInput(event.target.value)
     
 
