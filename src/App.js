@@ -2,8 +2,9 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 import Input from "./components/input"
-import List from "./components/CountryName"
+import CountryName from "./components/CountryName"
 import OneCountry from "./components/OneCountry"
+
 
 
 
@@ -13,6 +14,7 @@ const App = () => {
   const [countries, setCountries] = useState([])
   const [userInput, setUserInput] = useState("")
   const [countriesToShow,setCountriesToShow] = useState([])
+  const [details,setDetails] = useState(false)
 
   
 
@@ -30,6 +32,7 @@ const App = () => {
   },[userInput]);
   
   
+  
   const textOnChange = (event) => {
     setUserInput(event.target.value)
     
@@ -38,7 +41,10 @@ const App = () => {
    };  
 
 
-  
+   const onClick = (country) => {
+    setDetails(!details)
+  }
+   
     return ( <> 
 <Input value={userInput} onChange={textOnChange}/>
 
@@ -50,12 +56,12 @@ const App = () => {
 </div>) : countriesToShow.length === 1 ? (<OneCountry countries = {countriesToShow}/>)
 
 
-:( <List countries={countriesToShow}/>)
+:( <CountryName details={details} countries={countriesToShow} onClick = {onClick}/>)
 
 
 
 }
-  
+
     </>
     )
   }
