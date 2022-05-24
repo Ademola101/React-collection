@@ -7,6 +7,8 @@ import OneCountry from "./components/OneCountry";
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [userInput, setUserInput] = useState("");
+
+  const a =0
   
 
   useEffect(() => {
@@ -23,13 +25,10 @@ const App = () => {
   //   setDetails(!details);
   // };
 
-  if (userInput !== "") {var countriesToShow = countries.filter((country) =>
+  const countriesToShow = countries.filter((country) =>
     country.name.common.toLowerCase().startsWith(userInput.toLocaleLowerCase())
     
-  )}
-  else {
-    countriesToShow = []
-  }
+  )
 
   return (
     <>
