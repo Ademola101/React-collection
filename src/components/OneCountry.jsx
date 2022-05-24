@@ -1,32 +1,20 @@
-import React from 'react';
+import { useState } from "react";
 
-const OneCountry = ({countries}) => {
-  return ( <><ul>
-    {countries.map(country => { return(<li>
-      <div>
-      Country name : {country.name.common} <br />
-     Capital : {country.capital} <br />
-     Languages:
-    {Object.values(country.languages).map(language => (
-      <li key={language}>
-{language}
-      </li>
-    ))}
-<div>
-<img src={country.flags.png} alt="flags" />  
-</div>
+const CountryName = ({ country }) => {
+  const [details, setDetails] = useState(false);
+  return (
+    <li>
+      Country name: {country.name.common} <br />
+      <button onClick={() => setDetails(!details)}>Show more</button>
+      {details ? (
+        <div>
+          {" "}
+          area:
+          {country.area}
+        </div>
+      ) : null}
+    </li>
+  );
+};
 
-      </div>
-        
-      </li>
-    )
-      })}
-   </ul>
-  
- 
-
-  </>
-  )
-}
-
-export default OneCountry;
+export default CountryName;
