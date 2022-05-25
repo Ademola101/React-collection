@@ -8,9 +8,6 @@ const App = () => {
   const [countries, setCountries] = useState([]);
   const [userInput, setUserInput] = useState("");
 
-  const a =0
-  
-
   useEffect(() => {
     axios.get("https://restcountries.com/v3.1/all").then((response) => {
       setCountries(response.data);
@@ -24,12 +21,17 @@ const App = () => {
   // const onClick = (country) => {
   //   setDetails(!details);
   // };
+if (userInput !== "") {
+  var countriesToShow = countries.filter((country) =>
+  country.name.common.toLowerCase().startsWith(userInput.toLocaleLowerCase())
+);
 
-  const countriesToShow = countries.filter((country) =>
-    country.name.common.toLowerCase().startsWith(userInput.toLocaleLowerCase())
-    
-  )
+}
 
+else {
+countriesToShow = []
+}
+  
   return (
     <>
       <Input value={userInput} onChange={textOnChange} />
@@ -51,21 +53,3 @@ const App = () => {
   );
 };
 export default App;
-
-/* const App = ({notes}) => {
-
-console.log(notes);
-  
-  return (
-    <div>
-      <h1>Notes</h1>
-      <ul>
-       { notes.map( note =>
-
-        <Note key={note.id} note = {note}/>)}
-        </ul>
-
-    </div>
-  )
-}
- export default App */
