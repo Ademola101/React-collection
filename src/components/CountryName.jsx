@@ -6,12 +6,19 @@ const CountryName = ({ country }) => {
     <li>
       Country name: {country.name.common} <br />
       <button onClick={() => setDetails(!details)}>Show more</button>
-      {details ? (
+      {details ? ( <>
         <div>
           {" "}
           area:
           {country.area}
+          
         </div>
+
+        <div>
+          Capital : {country.capital}
+        </div>
+        </>
+        
       ) : null}
     </li>
   );
