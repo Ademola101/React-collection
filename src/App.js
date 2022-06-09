@@ -7,11 +7,14 @@ import OneCountry from "./components/OneCountry";
 const App = () => {
   const [countries, setCountries] = useState([]);
   const [userInput, setUserInput] = useState("");
+  const [log, setLog] = useState("");
+  const [lat, setLat] = useState("");
 
   useEffect(() => {
     axios.get("https://restcountries.com/v3.1/all").then((response) => {
       setCountries(response.data);
     });
+    axios.get()
   }, [userInput]);
 
   const textOnChange = (event) => {
