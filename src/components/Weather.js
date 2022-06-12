@@ -14,8 +14,9 @@ const Weather = ({log,lat,city}) => {
     ).then((response) => {
       setWeatherData(response.data);
       
+      
     })
-  }, []);
+  },[url,log,lat]);
   
   
   return (
@@ -28,8 +29,8 @@ const Weather = ({log,lat,city}) => {
 
     <div>
       <p>
-
-        Temperature: {weatherData['list'][0]['main']['temp']}
+{weatherData.cod ? (<div>{weatherData["list"][0]["main"]["temp"]}</div>):(<div>weather</div>)}
+        
       </p>
     </div>
     </>
