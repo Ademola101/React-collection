@@ -29,7 +29,20 @@ const Weather = ({log,lat,city}) => {
 
     <div>
       <p>
-{weatherData.cod ? (<div>{weatherData["list"][0]["main"]["temp"]}</div>):(<div>weather</div>)}
+{weatherData.cod ? (
+
+<>
+<div> Temperature : {weatherData["list"][0]["main"]["temp"] } &#8451;</div>
+
+<div>
+  
+  <img src={`http://openweathermap.org/img/wn/${weatherData["list"][0]["weather"][0]["icon"]}@2x.png`} alt="weather icon" />
+  </div>
+  
+  <div>
+    Wind: {weatherData["list"][0]["wind"]["speed"]} m/s
+    
+    </div> </>):(<div>Loading...</div>)}
         
       </p>
     </div>
