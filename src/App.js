@@ -1,6 +1,7 @@
 import Note from "./components/Note"
 import { useState, useEffect } from "react"
 import axios from "axios"
+import noteService from "./services/noteService"
 
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
   
   useEffect(() => {
     
-    axios.get("http://localhost:3001/notes").then(response => {
+    noteService.getAll().then(response => {
       console.log("promise fulfied");
       setNotes(response.data)
     })
@@ -32,7 +33,7 @@ const App = () => {
       date: new Date().toISOString(),
       important: Math.random() < 0.5,
     }
-    axios.post("http://localhost:3001/notes", noteObject).then(response => {
+    noteService.create(noteObject).then(response => {
       setNotes(notes.concat(response.data));
       setNewNote("")
     })
@@ -40,6 +41,18 @@ const App = () => {
   const handleNoteChange = (event) => {
     console.log(event.target.value);
     setNewNote(event.target.value)
+  };
+
+  const toggleImportance = (id) => {
+
+
+const note = notes.find((note  => note.id ===id))
+const changeNote = {...note, important: !note.important};
+noteService.update(id, changeNote).then(response => {
+  setNotes(notes.map((note => note.id !== id ? note : response.data)))
+
+})
+
   }
   
     return (
@@ -55,7 +68,8 @@ const App = () => {
         <ul>
          { notesToShow.map( note =>
   
-          <Note key={note.id} note = {note}/>)}
+          <Note key={note.id} note = {note} toggleImportance={() => toggleImportance(note.id)}/> )}
+          {/* because toggleimportance(id) actually call the function but we dont want the fuction called unless it is clicked */}
           </ul>
           <form onSubmit={addNote} >
             
