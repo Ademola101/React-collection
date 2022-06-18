@@ -3,7 +3,8 @@ const baseUrl = "http://localhost:3001/notes"
 
 
 const getAll = () => {
-  return (axios.get(baseUrl))
+  const request =  axios.get(baseUrl);
+  return request.then((response) => response.data)
 };
 
 const create = newObject => {
@@ -15,7 +16,7 @@ const update = (id, newObject) => {
 }
 
 export default { 
-  getAll: getAll, 
-  create: create, 
-  update: update 
+  getAll,
+  create,
+  update
 }

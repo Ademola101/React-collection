@@ -14,9 +14,9 @@ const App = () => {
   
   useEffect(() => {
     
-    noteService.getAll().then(response => {
+    noteService.getAll().then(initialNotes => {
       console.log("promise fulfied");
-      setNotes(response.data)
+      setNotes(initialNotes)
     })
   },[])
   console.log('render', notes.length, 'notes')
@@ -51,6 +51,9 @@ const changeNote = {...note, important: !note.important};
 noteService.update(id, changeNote).then(response => {
   setNotes(notes.map((note => note.id !== id ? note : response.data)))
 
+}).catch((error) => {
+  alert(`the note '${note.content}' was already deleted from server`)
+  setNotes(notes.filter(n => n.id !== id))
 })
 
   }
