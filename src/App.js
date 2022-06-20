@@ -1,6 +1,6 @@
 import Note from "./components/Note"
 import { useState, useEffect } from "react"
-
+import Notification from "./components/Notification"
 import noteService from "./services/noteService"
 
 
@@ -9,6 +9,7 @@ const App = () => {
 
   const [newNote, setNewNote] = useState("a new note");
   const [showAll, setShowAll] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("")
 
   
   
@@ -61,7 +62,7 @@ noteService.update(id, changeNote).then(response => {
     return (
       <div>
         <h1>Notes</h1>
-
+<Notification message={errorMessage} />
 <button onClick={()=>{
   setShowAll(!showAll)
 }}>
