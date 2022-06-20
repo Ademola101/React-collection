@@ -1,6 +1,6 @@
 import Note from "./components/Note"
 import { useState, useEffect } from "react"
-import axios from "axios"
+
 import noteService from "./services/noteService"
 
 
