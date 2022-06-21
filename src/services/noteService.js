@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "https://fast-citadel-23136.herokuapp.com/api/notes"
+const baseUrl = "/api/notes"
 
 
 const getAll = () => {
