@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
 const Footer = () => {
   const footerStyle = {
-    color: "green",
-    fontStyle: "italics",
+    color: 'green',
+    fontStyle: 'italics',
     fontSize: 16
   }
   return (
@@ -12,7 +12,7 @@ const Footer = () => {
 
       <em>Note app, Ademola Ogunmokun,2022</em>
     </div>
-  );
+  )
 }
 
-export default Footer;
+export default Footer
